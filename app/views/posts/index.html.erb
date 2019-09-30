@@ -1,0 +1,14 @@
+<div class="container">
+<h1>My Blogs</h1>
+
+<% @posts.each do |post| %>
+    <ul>
+     <li><%= link_to post.title, post_path(post)%></li><br>
+    </ul> 
+    <% end %>
+</p>
+
+<p>
+<%= link_to 'Create New Post', new_post_path %>
+</p>
+</div>

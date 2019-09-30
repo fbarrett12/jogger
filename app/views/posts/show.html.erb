@@ -1,0 +1,47 @@
+<div class="container">
+<h1> <%= @post.title%></h1>
+
+<p>
+  <%= @post.body%> 
+</p>
+
+<p>
+    <%= link_to 'Update Blog', edit_post_path(@post) %> <br>
+    <%= link_to 'Back to My Blogs', posts_path(@post) %>
+</p>
+
+<h2>Comments</h2>
+Add Comments
+<p>
+    <% @post.comments.each do |comment|%>
+        <div>
+            <p><strong><%= comment.username %></strong>: <%= comment.body %><br> 
+            Created: <small><%= comment.created_at %></small></p>
+        </div>
+        <% end %>
+</p>
+
+<div>
+<%= form_for ([@post, @post.comments.build]) do |f| %>
+    <p>
+      <%= f.label :username %><br>
+      <%= f.text_field :username, placeholder: 'Enter Username' %>
+    </p>
+
+    <p>
+      <%= f.label :body %><br>
+      <%= f.text_area :body, placeholder: 'Enter Comment' %>
+    </p>
+
+    <p>
+      <%= f.submit %><br>
+    </p>
+
+<% end %>
+</div>
+
+<p>
+    <%= button_to "Delete Post", destroy_post_path(@post)%>
+</p>
+
+</div>
