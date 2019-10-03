@@ -1,17 +1,28 @@
+<div class="text-center mb-4">
 <p id=”alert”><%= alert %></p>
 
-<h1>Login</h1>
+<% if flash[:errors]%>
+  <% flash[:errors].each do |error|%>
+    <p style="color:red"><%= error%></p>
+    <% end %>
+  <% end %>
 
-<%= form_for sessions_path do |form| %>
-  <div class=”field”>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-  </div>
-  <div class=”field”>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class=”actions”>
-    <%= submit_tag “Login” %>
-  </div>
+<h1>Welcome Back</h1>
+
+<%= form_tag login_path do %>
+
+    <%= label_tag :user_name %><br>
+      <%= text_field_tag :user_name, nil, placeholder: 'Enter Username' %>
+    </p>
+
+    <p>
+      <%= label_tag :password %><br>
+      <%= password_field_tag :password, nil, placeholder: 'Enter Password' %>
+    </p>
+    
+    <p>
+      <%= submit_tag "Login" %><br>
+    </p>
+
 <% end %>
+</div>

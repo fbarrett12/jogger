@@ -7,7 +7,7 @@
 
 <p>
     <%= link_to 'Update Blog', edit_post_path(@post) %> <br>
-    <%= link_to 'Back to My Blogs', posts_path(@post) %>
+    <%= link_to 'Back to My Blogs', posts_path(@current_user) %>
 </p>
 
 <h2>Comments</h2>
@@ -15,7 +15,7 @@ Add Comments
 <p>
     <% @post.comments.each do |comment|%>
         <div>
-            <p><strong><%= comment.username %></strong>: <%= comment.body %><br> 
+            <p><strong><%= comment.user.user_name %></strong>: <%= comment.body %><br> 
             Created: <small><%= comment.created_at %></small></p>
         </div>
         <% end %>
@@ -23,11 +23,7 @@ Add Comments
 
 <div>
 <%= form_for ([@post, @post.comments.build]) do |f| %>
-    <p>
-      <%= f.label :username %><br>
-      <%= f.text_field :username, placeholder: 'Enter Username' %>
-    </p>
-
+   <% f.hidden_field :user_id %>
     <p>
       <%= f.label :body %><br>
       <%= f.text_area :body, placeholder: 'Enter Comment' %>

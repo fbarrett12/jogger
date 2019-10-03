@@ -11,6 +11,7 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.valid?
             confirm_password
+            session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
             flash[:errors] = @user.errors.full_messages

@@ -2,20 +2,29 @@ class PostsController < ApplicationController
     # before_action :post_params, except: [:index, :new, :create]
 
     def index
-        @posts = Post.all 
+        if logged_in?
+            @posts = @current_user.posts
+          else
+            redirect_to home_path 
+        end
     end
 
     def new
-        @post = Post.new
+        @post = Post.new()
     end
 
     def create
-        @post = Post.create(post_params)
-        if @post.valid?
-            redirect_to @post
-        else 
-            flash[:errors] = @post.errors.full_messages
-            redirect_to new_post_path
+        if logged_in?
+            @post = Post.create(post_params)
+            @post.user_id = @current_user.id
+            @post.save 
+            
+                if @post.valid?
+                    redirect_to @post
+                else 
+                    flash[:errors] = @post.errors.full_messages
+                    redirect_to new_post_path
+                end
         end
     end
 
@@ -45,6 +54,6 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body, :user_id)
     end
 end

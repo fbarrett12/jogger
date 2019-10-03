@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Add Post</h1>
 
 <% if flash[:errors]%>
@@ -15,6 +16,7 @@
     <p>
       <%= f.label :body %><br>
       <%= f.text_area :body, placeholder: 'Enter Content' %>
+      <% f.hidden_field :user_id %>
     </p>
 
     <p>
@@ -24,5 +26,6 @@
 <% end %>
 
 <p>
-    <%= link_to "Cancel", posts_path %>
+    <%= link_to "Cancel", posts_path, class: "btn btn-sm btn-outline-secondary" %>
 </p>
+</div>

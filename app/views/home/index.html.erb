@@ -1,5 +1,12 @@
 <div class="text-center">
-<p id=”notice”><%= notice %></p>
-<h1>Welcome to Jogger</h1>
-<p>An online journal</p>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-comulmn">
+        <p id=”notice”><%= notice %></p>
+        <h1>Welcome to Jogger</h1>
+        <p>An online journal</p>
+        <br>
+        <%= link_to "Sign Up", new_user_path, class: "btn btn-sm btn-outline-secondary" %>
+        <br>
+        <%= link_to "Log in", login_path, class: "btn btn-sm btn-outline-secondary" %>
+    </div>
 </div>
+
