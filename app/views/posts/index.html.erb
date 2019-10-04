@@ -1,14 +1,22 @@
 <div class="container">
 <h1>My Blogs</h1>
 
-<% @posts.each do |post| %>
-    <ul>
-     <li><%= link_to post.title, post_path(post)%></li><br>
-    </ul> 
-    <% end %>
+<% @posts.each do |post| %>               
+    <div class="card" style="width: 500px">
+        <div class="col-lg-8">
+            <div class="card-body">
+                <h5 class="card-title"><%= post.title %></h5>
+                <p class="card-text">"<%= post.body[0...15] %>..."</p>
+                <%= link_to "Read More", post_path(post), class: "btn btn-primary" %>
+            </div>                 
+        </div>
+    </div>
+    <br></br>
+<% end %>
 
 
 <p>
 <%= link_to 'Create New Post', new_post_path %>
 </p>
 </div>
+

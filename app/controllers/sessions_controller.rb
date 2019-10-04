@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(user_name: params[:user_name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to posts_path, notice: "Logged in!"
+      redirect_to posts_path(user.id), notice: "Logged in!"
     else
       flash.now[:alert] = "Username or password is invalid"
       redirect_to login_path

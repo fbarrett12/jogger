@@ -1,12 +1,19 @@
 <div class="container">
 <h1>Featured Jogs</h1>
-    <div class="row">
-            <% @posts.each do |post| %>
-                <div class="col-xs-6 col-sm-4">
-                    <strong><%= link_to post.title, post_path(post) %></strong><br>
+    <% @posts.each do |post| %>
+        <div class="card" style="width: 500px">
+            <div class="col-lg-8">
+                <div class="card-body">
+                    <% if logged_in? %>
+                        <strong><%= link_to post.title, post_path(post) %></strong><br>
+                    <% else %>
+                       <strong><%= link_to post.title, welcome_path %></strong>
+                        <% flash[:error]="Member's only. Please Log in or Sign up."%>
+                    <% end %>
                     "<%= post.body[0...15] %>..."<br>
                     <small><%= post.user.user_name %></small>
                 </div>
-            <% end %>
-    </div>
-</div>
+            </div>
+        </div>
+        <br></br>
+    <% end %>

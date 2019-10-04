@@ -19,3 +19,24 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.card {
+    display: "inline-block";
+    opacity: 10;
+}
+
+a.color {
+    color:#00467f;
+  }
+
+  .navbar-dark .navbar-nav .nav-link.color {
+    color:#00467f;
+}
+
+.bg {
+    background-color: white;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
